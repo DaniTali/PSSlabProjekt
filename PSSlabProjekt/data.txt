@@ -1,0 +1,4 @@
+Wielomian A:
+a(0) = 1; a(1) = 0.8; 
+Wielomian B:
+b(0) = 0.5; b(1) = -0.7; 
