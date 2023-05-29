@@ -76,6 +76,29 @@ double Regulator::symulujSP()
 	return SP;
 }
 
+double Regulator::czlonP(double u)
+{
+	e = SP - u;
+
+	return k * e;
+}
+
+double Regulator::czlonI(double u)
+{
+	e = SP - u;
+	Esuma += e;
+	return ((k * h) / Ti) * Esuma;
+}
+
+double Regulator::czlonD(double u)
+{
+	e = SP - u;
+	double deltaE = e - eP;
+	eP = e;
+
+	return (k * Td / h) * (deltaE);
+}
+
 
 
 

@@ -30,10 +30,19 @@ public:
     
 private:
     void tworzenieGeneratorow();
-    double symulujSP();
     std::vector<double> parametryGeneratora;
     //Generator* generator;
     std::vector<Generator*> generatory;
+
+protected:
+    double symulujSP();
+    double czlonP(double u);
+    double czlonI(double u);
+    double czlonD(double u);
+
+    double k = 1.0, Ti = 20.0, Td = 0.0, Esuma = 0.0, e, eP;
+    double SP;
+    const double h = 0.1;
 
 };
 

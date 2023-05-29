@@ -141,6 +141,10 @@
   <ItemGroup>
     <ClInclude Include="ARX.h" />
     <ClInclude Include="Generator.h" />
+    <ClInclude Include="P.h" />
+    <ClInclude Include="PD.h" />
+    <ClInclude Include="PI.h" />
+    <ClInclude Include="PID.h" />
     <ClInclude Include="Plik.h" />
     <ClInclude Include="Plik_JSON.h" />
     <ClInclude Include="Regulator.h" />
@@ -150,6 +154,10 @@
   <ItemGroup>
     <ClCompile Include="ARX.cpp" />
     <ClCompile Include="Generator.cpp" />
+    <ClCompile Include="P.cpp" />
+    <ClCompile Include="PD.cpp" />
+    <ClCompile Include="PI.cpp" />
+    <ClCompile Include="PID.cpp" />
     <ClCompile Include="Plik.cpp" />
     <ClCompile Include="Plik_JSON.cpp" />
     <ClCompile Include="Regulator.cpp" />
