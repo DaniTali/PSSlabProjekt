@@ -12,14 +12,15 @@ enum class typRegulatora:char{
 	P,PI,PD,PID
 };
 
-class Symuluj
+class Symulacja
 {
 public:
-	Symuluj(typRegulatora typ);
-	~Symuluj();
+	Symulacja(Regulator regulator, ARX obiekt);
+	~Symulacja();
 
 private:
-
+	Regulator* regulator;
+	ARX* obiekt;
 };
 
 

@@ -149,7 +149,7 @@
     <ClInclude Include="Plik_JSON.h" />
     <ClInclude Include="Regulator.h" />
     <ClInclude Include="SISO.h" />
-    <ClInclude Include="Symuluj.h" />
+    <ClInclude Include="Symulacja.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ARX.cpp" />
@@ -163,7 +163,7 @@
     <ClCompile Include="Regulator.cpp" />
     <ClCompile Include="SISO.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Symuluj.cpp" />
+    <ClCompile Include="Symulacja.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

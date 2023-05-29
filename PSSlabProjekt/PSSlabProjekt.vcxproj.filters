@@ -33,7 +33,7 @@
     <ClInclude Include="SISO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Symuluj.h">
+    <ClInclude Include="Symulacja.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PI.h">
@@ -71,7 +71,7 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Symuluj.cpp">
+    <ClCompile Include="Symulacja.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PI.cpp">
