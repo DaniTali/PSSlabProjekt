@@ -85,6 +85,114 @@ int Plik_JSON::odczytParametrow_Plik(ARX obiekt, std::string nazwa)
 
 }
 
+std::vector<double> Plik_JSON::odczytParametrowRegulatora(std::string nazwa)
+{
+	try {
+		if (auto plik = std::ifstream(nazwaPliku)) {
+
+			json parametryObiektu, Jplik;
+
+			if (plik >> Jplik) {
+
+				for (const auto& wczytanyObiekt : Jplik.items()) {
+
+					//std::cout << obiekt.key()<< obiekt.value()["nazwa"] << std::endl;
+
+					if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Regulator") {
+						
+						std::vector<double> parametry;
+
+						parametry.push_back(wczytanyObiekt.value()["P"].get<double>());
+						parametry.push_back(wczytanyObiekt.value()["I"].get<double>());
+						parametry.push_back(wczytanyObiekt.value()["D"].get<double>());
+
+						plik.close();
+
+						return parametry;
+					}
+
+				}
+				throw std::logic_error("Brak wymaganego obiektu w pliku.");
+				plik.close();
+
+
+			}
+			else {
+				throw std::logic_error("Niepobrano zawartosci z pliku JSON.");
+				plik.close();
+			}
+
+
+		}
+		else {
+			throw std::runtime_error("Blad odczytu z pliku.");
+
+		}
+	}
+	catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+
+	}
+
+	
+	return std::vector<double>();
+}
+
+int Plik_JSON::zapisParametrowRegulatora(std::vector<double> parametry, std::string nazwa)
+{
+
+	json zawartoscPliku, odpowiedz, nowyObiekt;
+	if (auto plik = std::ifstream(nazwaPliku)) {
+
+		try {
+			plik >> zawartoscPliku;
+			plik.close();
+		}
+		catch (std::exception& e) {
+			//if(e==)
+			//TODO jak pusty 
+			std::cout << e.what() << std::endl;
+
+		}
+
+		if (auto plik = std::ofstream(nazwaPliku)) {
+
+			for (const auto& wczytanyObiekt : zawartoscPliku.items()) {
+
+				if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Regulator") {
+
+					nowyObiekt["nazwa"] = nazwa;
+					nowyObiekt["typ"] = "Regulator";
+					nowyObiekt["P"] = parametry[0];
+					nowyObiekt["I"] = parametry[1];
+					nowyObiekt["D"] = parametry[2];
+
+					zawartoscPliku.emplace(nowyObiekt, wczytanyObiekt.key());
+					plik << zawartoscPliku.dump(4);
+
+					plik.close();
+					return 1;
+				}
+
+			}
+
+			nowyObiekt["nazwa"] = nazwa;
+			nowyObiekt["typ"] = "Regulator";
+			nowyObiekt["P"] = parametry[0];
+			nowyObiekt["I"] = parametry[1];
+			nowyObiekt["D"] = parametry[2];
+			zawartoscPliku.push_back(nowyObiekt);
+			plik << zawartoscPliku.dump(4);
+
+			plik.close();
+			return 1;
+		}
+	}
+	return 0;
+
+
+}
+
 int Plik_JSON::zapisParametrow_Plik(ARX obiekt, std::string nazwa)
 {
 	//TODO jak jest juz w pliku taki obiekt to tylko go musze zmienic 

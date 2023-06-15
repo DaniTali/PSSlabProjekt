@@ -5,9 +5,11 @@ PID::PID(std::vector<double> parametryGeneratora) : Regulator(parametryGenerator
 	k = 1.0;
 }
 
-PID::PID(std::vector<double> parametryGeneratora, double k) : Regulator(parametryGeneratora)
+PID::PID(std::vector<double> parametryGeneratora, double k, double Ti, double Td) : Regulator(parametryGeneratora)
 {
 	this->k = k;
+	this->Ti = Ti;
+	this->Td = Td;
 }
 
 PID::~PID()

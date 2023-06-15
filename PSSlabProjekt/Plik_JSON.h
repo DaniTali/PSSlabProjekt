@@ -40,6 +40,22 @@ public:
 	 * @return 
 	*/
 	int odczytParametrow_Plik(ARX obiekt, std::string nazwa);
+
+	/**
+	 * @brief Metoda czytajaca parametry regulatora z pliku
+	 * @param nazwa Nazwa regulatora w pliku
+	 * @return Wektor parametrow
+	*/
+	std::vector<double> odczytParametrowRegulatora(std::string nazwa);
+
+	/**
+	 * @brief Metoda zapisujaca parametry regulatora do pliku.
+	 * @param parametry Parametry do zapisania przez metode
+	 * @param nazwa Nazwa regulatora 
+	 * @return 
+	*/
+	int zapisParametrowRegulatora(std::vector<double> parametry, std::string nazwa);
+	
 	/**
 	 * @brief Metoda wpisujaca parametry podanego obiektu ARX do pliku.
 	 * @param obiekt 
@@ -47,6 +63,7 @@ public:
 	 * @return 
 	*/
 	int zapisParametrow_Plik(ARX obiekt, std::string nazwa);
+	
 	/**
 	 * @brief Metoda zapisujaca symulacje do pliku
 	 * @param obiekt 

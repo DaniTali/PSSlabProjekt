@@ -1,11 +1,11 @@
 #include "Regulator.h"
 
-Regulator::Regulator(int typ, double a, double b)
+Regulator::Regulator(int typ, double a, double b) :SP(0.0), e(0.0), eP(0.0)
 {
 	//generator = new Generator(typ, a, b);
 }
 
-Regulator::Regulator(std::vector<double> parametry)
+Regulator::Regulator(std::vector<double> parametry) :SP(0.0), e(0.0), eP(0.0)
 {
 	parametryGeneratora = parametry;
 	tworzenieGeneratorow();

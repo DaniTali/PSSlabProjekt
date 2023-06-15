@@ -6,7 +6,7 @@ PD::PD(std::vector<double> parametryGeneratora) : Regulator(parametryGeneratora)
 	Td = 0.0;
 }
 
-PD::PD(std::vector<double> parametryGeneratora, double k) : Regulator(parametryGeneratora)
+PD::PD(std::vector<double> parametryGeneratora, double k, double Td) : Regulator(parametryGeneratora)
 {
 	this->k = k;
 	this->Td = Td;

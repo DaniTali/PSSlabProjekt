@@ -40,8 +40,8 @@ protected:
     double czlonI(double u);
     double czlonD(double u);
 
-    double k = 1.0, Ti = 20.0, Td = 0.0, Esuma = 0.0, e, eP;
-    double SP;
+    double k = 1.0, Ti = 20.0, Td = 0.0, Esuma = 0.0, e = 0.0, eP = 0.0;
+    double SP = 0.0;
     const double h = 0.1;
 
 };

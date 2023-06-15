@@ -2,6 +2,7 @@
 #include "Plik.h"
 #include "Plik_JSON.h"
 #include "Regulator.h"
+#include "Symulacja.h"
 
 int main() {
 	ARX x(1, 1, 1);
@@ -27,8 +28,8 @@ int main() {
 
 	//json
 	Plik_JSON plikjson("data.json");
-	//plikjson.zapisParametrow_Plik(x, "arx1");
-	//plikjson.odczytParametrow_Plik(x, "arx1");
+	plikjson.zapisParametrow_Plik(x, "arx1");
+	plikjson.odczytParametrow_Plik(x, "arx1");
 	//plikjson.zapisSymulacji(x, "arx1", 1, 2);
 	//plikjson.zapisSymulacji(x, "arx1", 1, 3);
 	
@@ -55,6 +56,16 @@ int main() {
 		std::cout << std::endl;
 	}
 
+	// Zapis - odczyt parametrow regulatora z pliku
+	int t = plikjson.zapisParametrowRegulatora({ 1.0,20.0,0.1 }, "pid1");
+	std::vector<double> parametryPID = plikjson.odczytParametrowRegulatora("pid1");
+	std::cout << "Wczytane parametry regulatora: " << parametryPID[0] << ", " << parametryPID[1] << ", " << parametryPID[2] << "\n ";
+
+
+	// Symulacja
+	std::cout << "\n\n" << "Test symulacji:\n";
+	Symulacja symulacja;
+	
 
 
 	return 0;

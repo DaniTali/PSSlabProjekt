@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="ARX">
+    <Position X="5" Y="2.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEIgAARAACAAAAAAAAAAABABAAAgAAACAEAACAAAQ=</HashCode>
+      <FileName>ARX.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Generator" Collapsed="true">
+    <Position X="18.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAjAAAAAUAAAICABAAAAAAAAAAgAwAAAAIAAkQBA=</HashCode>
+      <FileName>Generator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="P">
+    <Position X="15.5" Y="8.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>P.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PD">
+    <Position X="19.75" Y="8.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PI">
+    <Position X="6" Y="8.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>PI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PID">
+    <Position X="11" Y="8.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>PID.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Plik" Collapsed="true">
+    <Position X="20.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAABIAACACAACAAAQAAAAAA=</HashCode>
+      <FileName>Plik.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Plik_JSON" Collapsed="true">
+    <Position X="18.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BACAAAAAAAAAAAAAAAAAAAAAQAACAAAACAAAQAAAAAA=</HashCode>
+      <FileName>Plik_JSON.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Regulator">
+    <Position X="13.25" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IQBAAiAAAAFAAAAgACIAAAAAAIAEAAACwAAAAEAAAAA=</HashCode>
+      <FileName>Regulator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SISO">
+    <Position X="10.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SISO.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Symulacja" Collapsed="true">
+    <Position X="20.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAEAAAABAAAAAAAAEAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Symulacja.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
