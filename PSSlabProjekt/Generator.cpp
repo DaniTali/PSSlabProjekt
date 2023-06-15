@@ -5,28 +5,34 @@
 Generator::Generator(int typ, double a, double b)
 {
     this->typ = typ;
-    A = 0;
-    T = 0;
-    mi = 0;
-    sigma = 0;
+    A = 0.0;
+    T = 0.0;
+    mi = 1.0;
+    sigma = 1.0;
     iteracja = new int(0);
+    generator = nullptr;
+    rozklad = nullptr;
 
     switch (typ)
     {
     case 2:
         A = a;
+        break;
     case 3:
         A = a;
         T = b;
+        break;
     case 4:
         A = a;
         T = b;
+        break;
     case 5:
         mi = a;
         sigma = b;
         generator = new std::default_random_engine();
         rozklad = new std::normal_distribution<double>(mi, sigma);
         //this->rozklad = rozklad;
+        break;
     }
 }
 
@@ -64,14 +70,14 @@ double Generator::symuluj()
     }
 }
 
-Generator::Generator() : typ(1), A(0), T(0), mi(0), sigma(0)
+Generator::Generator() : typ(1), A(0), T(0), mi(1.0), sigma(1.0)
 {
     iteracja = new int(0);
     generator = new std::default_random_engine();
     rozklad = new std::normal_distribution<double>(mi, sigma);
 }
 
-Generator::Generator(int typ, double a) : typ(2), A(a), T(0), mi(0), sigma(0)
+Generator::Generator(int typ, double a) : typ(2), A(a), T(0), mi(1.0), sigma(1.0)
 {
     iteracja = new int(0);
     generator = new std::default_random_engine();

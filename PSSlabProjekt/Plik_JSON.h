@@ -39,7 +39,7 @@ public:
 	 * @param nazwa Nazwa wybranego obiektu znajdujacego sie w pliku
 	 * @return 
 	*/
-	int odczytParametrow_Plik(ARX obiekt, std::string nazwa);
+	int odczytParametrow_Plik(ARX& obiekt, std::string nazwa);
 
 	/**
 	 * @brief Metoda czytajaca parametry regulatora z pliku

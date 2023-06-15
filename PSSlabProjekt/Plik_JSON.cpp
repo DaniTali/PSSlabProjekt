@@ -19,7 +19,7 @@ Plik_JSON::Plik_JSON(std::string nazwa)
 
 }
 
-int Plik_JSON::odczytParametrow_Plik(ARX obiekt, std::string nazwa)
+int Plik_JSON::odczytParametrow_Plik(ARX& obiekt, std::string nazwa)
 {
 	
 	try {

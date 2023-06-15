@@ -19,10 +19,10 @@ ARX::ARX(int nk, int nA, int nB)
         pamiecY.reserve(nA);
 
         for (auto i = 0; i < nB + nk; i++) {
-            pamiecU.push_back(0);
+            pamiecU.push_back(0.0);
         }
         for (auto i = 0; i < nA; i++) {
-            pamiecY.push_back(0);
+            pamiecY.push_back(0.0);
         }
     }
     catch (std::exception& e) {
@@ -45,7 +45,7 @@ double ARX::symuluj(double u)
 
         pamiecY.emplace(pamiecY.begin(), y);
         pamiecY.pop_back();
-        std::cout << "y = " << y << std::endl;
+        //std::cout << "y = " << y << std::endl;
         pamiecU.emplace(pamiecU.begin(), u);
         pamiecU.pop_back();
     }

@@ -17,15 +17,17 @@ public:
 	 * @param regulator obiekt regulatora przekazywany do symulacji
 	 * @param arx Obiekt ARX przekazywany do symulacji
 	*/
-	Symulacja(Regulator& regulator, ARX& arx);
+	/*Symulacja(Regulator& regulator, ARX& arx);*/
 	Symulacja();
+	/**
+	 * @brief Metoda odpowiedzialna za symulacjê obiektow
+	 * @param n - liczba iteracji
+	*/
+	void petlaSymulacji(int n);
 	~Symulacja();
 
 private:
-	/**
-	 * @brief Metoda odpowiedzialna za symulacjê obiektow
-	*/
-	void petlaSymulacji();
+	
 	/**
 	 * @brief wskaznik na obiekt regulatora
 	*/

@@ -1,11 +1,11 @@
 #include "Symulacja.h"
 
-Symulacja::Symulacja(Regulator& regulator, ARX& arx)
-{
-	this->regulator = &regulator;
-	this->arx = &arx;
-	petlaSymulacji();
-}
+//Symulacja::Symulacja(Regulator& regulator, ARX& arx)
+//{
+//	this->regulator = &regulator;
+//	this->arx = &arx;
+//	petlaSymulacji();
+//}
 
 Symulacja::Symulacja()
 {
@@ -24,7 +24,8 @@ Symulacja::Symulacja()
 	/**
 	 * @brief Stworzenie instancji obiektu regulowanego 
 	*/
-	arx = new ARX();
+	
+	arx = new ARX(1, 1, 1);
 	plik->odczytParametrow_Plik(*arx, nazwaARX);
 
 
@@ -60,10 +61,19 @@ Symulacja::Symulacja()
 	Ti = parametryRegulatora[1];
 	Td = parametryRegulatora[2];
 
-	parametryGeneratora.push_back(5.0);
-	parametryGeneratora.push_back(2.0);
-	parametryGeneratora.push_back(0.2);
-
+	//impuls
+	parametryGeneratora.push_back(0);
+	//skok
+	parametryGeneratora.push_back(1.0);
+	//trojkat
+	parametryGeneratora.push_back(0.0);
+	parametryGeneratora.push_back(0.0);
+	//sinus
+	parametryGeneratora.push_back(0.0); 
+	parametryGeneratora.push_back(0.0);
+	//szum
+	parametryGeneratora.push_back(0.0);
+	parametryGeneratora.push_back(0.0);
 
 	switch (typ)
 	{
@@ -91,7 +101,20 @@ Symulacja::~Symulacja()
 		delete plik;
 }
 
-void Symulacja::petlaSymulacji()
+void Symulacja::petlaSymulacji(int n)
 {
+	std::vector<double> wektorY, wektorU, wektorSP;
+	Regulator* wskREG{static_cast<Regulator*>(regulator)};
+	
+	double tempU = 0.0, tempY = 0.0;
+	std::cout << "Start symulacji: \n";
+	for (auto i = 0; i < n; i++) {
+		tempU = wskREG->symuluj(tempY);
+		wektorU.push_back(tempU);
 
+		tempY = arx->symuluj(tempU);
+		wektorY.push_back(tempY);
+		std::cout << "U = " << tempU << "\tY = " << tempY << std::endl;
+	}
+	
 }
