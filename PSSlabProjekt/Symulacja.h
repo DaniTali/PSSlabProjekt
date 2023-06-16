@@ -53,6 +53,10 @@ private:
 	 * @brief Parametry generatora
 	*/
 	std::vector<double> parametryGeneratora;
+	/**
+	 * @brief Metoda wykonujaca zapis symulacji do pliku
+	*/
+	void zapisDoPliku(std::vector<double>& wektorU, std::vector<double>& wektorY);
 };
 
 

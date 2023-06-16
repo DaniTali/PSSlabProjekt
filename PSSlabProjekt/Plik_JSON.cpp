@@ -156,31 +156,23 @@ int Plik_JSON::zapisParametrowRegulatora(std::vector<double> parametry, std::str
 		}
 
 		if (auto plik = std::ofstream(nazwaPliku)) {
-
-			for (const auto& wczytanyObiekt : zawartoscPliku.items()) {
-
-				if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Regulator") {
-
-					nowyObiekt["nazwa"] = nazwa;
-					nowyObiekt["typ"] = "Regulator";
-					nowyObiekt["P"] = parametry[0];
-					nowyObiekt["I"] = parametry[1];
-					nowyObiekt["D"] = parametry[2];
-
-					zawartoscPliku.emplace(nowyObiekt, wczytanyObiekt.key());
-					plik << zawartoscPliku.dump(4);
-
-					plik.close();
-					return 1;
-				}
-
-			}
-
 			nowyObiekt["nazwa"] = nazwa;
 			nowyObiekt["typ"] = "Regulator";
 			nowyObiekt["P"] = parametry[0];
 			nowyObiekt["I"] = parametry[1];
 			nowyObiekt["D"] = parametry[2];
+
+			size_t index = 0;
+			for (const auto& wczytanyObiekt : zawartoscPliku.items()) {
+
+				if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Regulator") {
+					zawartoscPliku.erase(index);
+					break;
+				}
+				index++;
+			}
+
+			
 			zawartoscPliku.push_back(nowyObiekt);
 			plik << zawartoscPliku.dump(4);
 
@@ -260,7 +252,7 @@ int Plik_JSON::zapisParametrow_Plik(ARX obiekt, std::string nazwa)
 
 }
 
-int Plik_JSON::zapisSymulacji(std::string nazwa)
+int Plik_JSON::zapisSymulacji(std::string nazwa, std::vector<double> wektorU, std::vector<double> wektorY)
 {
 
 	json zawartoscPliku, odpowiedz, nowyObiekt;
@@ -271,64 +263,40 @@ int Plik_JSON::zapisSymulacji(std::string nazwa)
 			plik.close();
 		}
 		catch (std::exception& e) {
-			//if(e==)
-			//TODO jak pusty 
+
 			std::cout << e.what() << std::endl;
 			
 		}
-
-		if (auto plik = std::ofstream(nazwaPliku)) {
-
-			for (const auto& wczytanyObiekt : zawartoscPliku.items()) {
-
-				if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Symulacja") {
-
-
-
-					zawartoscPliku.emplace(nowyObiekt, wczytanyObiekt.key());
-
-					/*if (wczytanyObiekt.value()["parametry"] != NULL) {
-						parametryObiektu = wczytanyObiekt.value()["parametry"];
-
-						stopnie.push_back(parametryObiektu["nk"].get<int>());
-						stopnie.push_back(parametryObiektu["nA"].get<int>());
-						stopnie.push_back(parametryObiektu["nB"].get<int>());
-						for (const auto& parametr : parametryObiektu["a"]) {
-							wektorA.push_back(parametr.get<double>());
-						}
-						for (const auto& parametr : parametryObiektu["b"]) {
-							wektorB.push_back(parametr.get<double>());
-						}
-
+		try {
+			if (auto plik = std::ofstream(nazwaPliku)) {
+				nowyObiekt["nazwa"] = nazwa;
+				nowyObiekt["typ"] = "Symulacja";
+				json arrayU = json::array({ wektorU }), arrayY = json::array({ wektorY });
+				nowyObiekt["u"] = arrayU;
+				nowyObiekt["y"] = arrayY;
+				size_t index = 0;
+				for (const auto& wczytanyObiekt : zawartoscPliku.items()) {
+					if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Symulacja") {
+						zawartoscPliku.erase(index);
+						break;
 					}
-					obiekt.ustawStopnie(stopnie[0], stopnie[1], stopnie[2]);
-					obiekt.wpiszParametry(wektorA, wektorB);*/
-					//plik.close();
-
-					return 1;
+					index++;
 				}
 
+				zawartoscPliku.push_back(nowyObiekt);
+				plik << zawartoscPliku.dump(4);
+				plik.close();
+				return 1;
 			}
-
-			nowyObiekt["nazwa"] = nazwa;
-			nowyObiekt["typ"] = "Symulacja";
-			nowyObiekt["u"] = u;
-			nowyObiekt["y"] = y;
-			zawartoscPliku.push_back(nowyObiekt);
-			plik << zawartoscPliku.dump(4);
-
-			plik.close();
-			return 1;
 		}
-	}
-	/*if (auto plik = std::ofstream(nazwaPliku)) {
-		double u = 1;
-		odpowiedz = obiekt.symuluj(u);
-		zawartoscPliku.push_back(odpowiedz);
-		plik << zawartoscPliku.dump(4);
-		plik.close();
-	}*/
+		catch (std::exception& e) {
 
+			std::cout << e.what() << std::endl;
+
+		}
+		
+	}
+	return -1;
 
 }
 

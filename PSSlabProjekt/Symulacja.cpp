@@ -95,14 +95,10 @@ Symulacja::Symulacja()
 
 }
 
-Symulacja::~Symulacja()
+
+void Symulacja::zapisDoPliku(std::vector<double>& wektorU, std::vector<double>& wektorY)
 {
-	if (regulator != nullptr)
-		delete regulator;
-	if (arx != nullptr)
-		delete arx;
-	if (plik != nullptr)
-		delete plik;
+	plik->zapisSymulacji("sumulacja1", wektorU, wektorY);
 }
 
 void Symulacja::petlaSymulacji(int n)
@@ -121,6 +117,16 @@ void Symulacja::petlaSymulacji(int n)
 		std::cout << "U = " << tempU << "\tY = " << tempY << std::endl;
 	}
 	
-	
+	zapisDoPliku(wektorU, wektorY);
 
+}
+
+Symulacja::~Symulacja()
+{
+	if (regulator != nullptr)
+		delete regulator;
+	if (arx != nullptr)
+		delete arx;
+	if (plik != nullptr)
+		delete plik;
 }

@@ -64,13 +64,8 @@ public:
 	*/
 	int zapisParametrow_Plik(ARX obiekt, std::string nazwa);
 	
-	/**
-	 * @brief Metoda zapisujaca symulacje do pliku
-	 * @param obiekt 
-	 * @param nazwa 
-	 * @return 
-	*/
-	int zapisSymulacji(std::string nazwa);
+	
+	int zapisSymulacji(std::string nazwa, std::vector<double> wektorU, std::vector<double> wektorY);
 	~Plik_JSON();
 
 };
