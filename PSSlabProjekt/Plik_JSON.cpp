@@ -260,7 +260,7 @@ int Plik_JSON::zapisParametrow_Plik(ARX obiekt, std::string nazwa)
 
 }
 
-int Plik_JSON::zapisSymulacji(ARX obiekt, std::string nazwa, double u, double y)
+int Plik_JSON::zapisSymulacji(std::string nazwa)
 {
 
 	json zawartoscPliku, odpowiedz, nowyObiekt;

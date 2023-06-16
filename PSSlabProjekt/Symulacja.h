@@ -24,6 +24,7 @@ public:
 	 * @param n - liczba iteracji
 	*/
 	void petlaSymulacji(int n);
+	
 	~Symulacja();
 
 private:

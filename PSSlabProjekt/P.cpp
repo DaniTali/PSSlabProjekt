@@ -17,5 +17,6 @@ P::~P()
 double P::symuluj(double u)
 {
 	SP = symulujSP();
+	
 	return czlonP(u);
 }

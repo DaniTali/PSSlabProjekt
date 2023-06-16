@@ -64,7 +64,7 @@ Symulacja::Symulacja()
 	//impuls
 	parametryGeneratora.push_back(0);
 	//skok
-	parametryGeneratora.push_back(1.0);
+	parametryGeneratora.push_back(2.0);
 	//trojkat
 	parametryGeneratora.push_back(0.0);
 	parametryGeneratora.push_back(0.0);
@@ -79,12 +79,16 @@ Symulacja::Symulacja()
 	{
 	case 1:
 		regulator = new P(parametryGeneratora, k);
+		break;
 	case 11:
 		regulator = new PI(parametryGeneratora, k, Ti);
+		break;
 	case 101:
 		regulator = new PD(parametryGeneratora, k, Td);
+		break;
 	case 111:
 		regulator = new PID(parametryGeneratora, k, Ti, Td);
+		break;
 
 	}
 	
@@ -117,4 +121,6 @@ void Symulacja::petlaSymulacji(int n)
 		std::cout << "U = " << tempU << "\tY = " << tempY << std::endl;
 	}
 	
+	
+
 }

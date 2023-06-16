@@ -70,7 +70,7 @@ public:
 	 * @param nazwa 
 	 * @return 
 	*/
-	int zapisSymulacji(ARX obiekt, std::string nazwa, double u, double y);
+	int zapisSymulacji(std::string nazwa);
 	~Plik_JSON();
 
 };

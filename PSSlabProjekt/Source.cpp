@@ -76,7 +76,7 @@ int main() {
 	std::cout << "\n\n" << "Test symulacji:\n";
 	Symulacja symulacja;
 	int n = 20;
-	symulacja.petlaSymulacji(n);
+	symulacja.petlaSymulacji(200);
 	
 
 

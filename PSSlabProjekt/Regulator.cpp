@@ -79,7 +79,7 @@ double Regulator::symulujSP()
 double Regulator::czlonP(double u)
 {
 	e = SP - u;
-
+	//std::cout << "\nE = " << e << "\n";
 	return k * e;
 }
 
