@@ -20,11 +20,26 @@ Symulacja::Symulacja()
 	*/
 	nazwaARX = "arx1";
 	nazwaRegulatora = "pid1";
+	/**
+	 * @brief Wywolanie metody tworzacej obiekty sumulowane 
+	*/
+	stworzenieObiektow();
+
+}
+
+
+void Symulacja::zapisDoPliku(std::vector<double>& wektorU, std::vector<double>& wektorY)
+{
+	plik->zapisSymulacji("sumulacja1", wektorU, wektorY);
+}
+
+void Symulacja::stworzenieObiektow()
+{
+	plik = new Plik_JSON(nazwaPliku);
 
 	/**
-	 * @brief Stworzenie instancji obiektu regulowanego 
+	 * @brief Stworzenie instancji obiektu regulowanego
 	*/
-	
 	arx = new ARX(1, 1, 1);
 	plik->odczytParametrow_Plik(*arx, nazwaARX);
 
@@ -46,17 +61,17 @@ Symulacja::Symulacja()
 
 	if (parametryRegulatora[0] != 0)
 		typ += 1;
-		//typ[0] = 'P';
+	//typ[0] = 'P';
 
 	if (parametryRegulatora[1] != 0)
 		typ += 10;
-		//typ[1] = 'I';
+	//typ[1] = 'I';
 
 	if (parametryRegulatora[2] != 0)
 		typ += 100;
-		//typ[2] = 'D';
-	
-	//typRegulatora.assign(typ, typ + 3);
+	//typ[2] = 'D';
+
+//typRegulatora.assign(typ, typ + 3);
 	k = parametryRegulatora[0];
 	Ti = parametryRegulatora[1];
 	Td = parametryRegulatora[2];
@@ -69,7 +84,7 @@ Symulacja::Symulacja()
 	parametryGeneratora.push_back(0.0);
 	parametryGeneratora.push_back(0.0);
 	//sinus
-	parametryGeneratora.push_back(0.0); 
+	parametryGeneratora.push_back(0.0);
 	parametryGeneratora.push_back(0.0);
 	//szum
 	parametryGeneratora.push_back(0.0);
@@ -91,14 +106,25 @@ Symulacja::Symulacja()
 		break;
 
 	}
-	
 
 }
 
-
-void Symulacja::zapisDoPliku(std::vector<double>& wektorU, std::vector<double>& wektorY)
+Symulacja::Symulacja(std::string nazwaPliku, std::string nazwaARX, std::string nazwaRegulatora)
 {
-	plik->zapisSymulacji("sumulacja1", wektorU, wektorY);
+	/**
+	 * @brief domyslna nazwa pliku do odczytu
+	*/
+	this->nazwaPliku = nazwaPliku;
+	
+	/**
+	 * @brief Domyslne nazwy obiektow wczytywanych z pliku
+	*/
+	this->nazwaARX = nazwaARX;
+	this->nazwaRegulatora = nazwaRegulatora;
+	/**
+	 * @brief Wywolanie metody tworzacej obiekty sumulowane
+	*/
+	stworzenieObiektow();
 }
 
 void Symulacja::petlaSymulacji(int n)

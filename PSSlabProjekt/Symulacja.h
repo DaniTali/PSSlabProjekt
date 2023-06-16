@@ -20,6 +20,13 @@ public:
 	/*Symulacja(Regulator& regulator, ARX& arx);*/
 	Symulacja();
 	/**
+	 * @brief Konstruktor przyjmujacy nazwe pliku i obiektow symulacji do odczytu z pliku 
+	 * @param nazwaPliku Nazwa pliku zawieracjacego obiekty sumulacji
+	 * @param nazwaARX Nazwa obiektu ARX do odczytu z pliku
+	 * @param nazwaRegulatora Nazwa regulatora do odczytu z pliku
+	*/
+	Symulacja(std::string nazwaPliku, std::string nazwaARX, std::string nazwaRegulatora);
+	/**
 	 * @brief Metoda odpowiedzialna za symulacjê obiektow
 	 * @param n - liczba iteracji
 	*/
@@ -54,9 +61,16 @@ private:
 	*/
 	std::vector<double> parametryGeneratora;
 	/**
-	 * @brief Metoda wykonujaca zapis symulacji do pliku
+	 * @brief Metoda zapisujaca wynik symulacji do pliku
+	 * @param wektorU Wektor zmiennej sterujacej
+	 * @param wektorY Wektor zmienne procesowek
 	*/
 	void zapisDoPliku(std::vector<double>& wektorU, std::vector<double>& wektorY);
+	/**
+	 * @brief Metoda tworzace obiekty - Inicjalizacja symulacji
+	*/
+	void stworzenieObiektow();
+
 };
 
 

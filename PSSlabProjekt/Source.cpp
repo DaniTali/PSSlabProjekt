@@ -71,12 +71,14 @@ int main() {
 	std::vector<double> parametryPID = plikjson.odczytParametrowRegulatora("pid1");
 	std::cout << "Wczytane parametry regulatora: " << parametryPID[0] << ", " << parametryPID[1] << ", " << parametryPID[2] << "\n ";*/
 
+	{
+		// Symulacja 1 
+		std::cout << "\n\n" << "Test symulacji:\n";
+		Symulacja symulacja;
+		int n = 20;
+		symulacja.petlaSymulacji(200);
 
-	// Symulacja
-	std::cout << "\n\n" << "Test symulacji:\n";
-	Symulacja symulacja;
-	int n = 20;
-	symulacja.petlaSymulacji(200);
+	}
 	
 
 
