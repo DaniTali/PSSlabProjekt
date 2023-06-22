@@ -1,28 +1,19 @@
 #include "Symulacja.h"
 
-//Symulacja::Symulacja(Regulator& regulator, ARX& arx)
-//{
-//	this->regulator = &regulator;
-//	this->arx = &arx;
-//	petlaSymulacji();
-//}
 
 Symulacja::Symulacja()
 {
-	/**
-	 * @brief domyslna nazwa pliku do odczytu
-	*/
+	// @brief domyslna nazwa pliku do odczytu
+	
 	nazwaPliku = "data.json";
 	plik = new Plik_JSON(nazwaPliku);
 
-	/**
-	 * @brief Domyslne nazwy obiektow wczytywanych z pliku
-	*/
+	// @brief Domyslne nazwy obiektow wczytywanych z pliku
+	
 	nazwaARX = "arx1";
 	nazwaRegulatora = "pid1";
-	/**
-	 * @brief Wywolanie metody tworzacej obiekty sumulowane 
-	*/
+	// @brief Wywolanie metody tworzacej obiekty sumulowane 
+	
 	stworzenieObiektow();
 
 }
@@ -37,41 +28,36 @@ void Symulacja::stworzenieObiektow()
 {
 	plik = new Plik_JSON(nazwaPliku);
 
-	/**
-	 * @brief Stworzenie instancji obiektu regulowanego
-	*/
+	// @brief Stworzenie instancji obiektu regulowanego
+	
 	arx = new ARX(1, 1, 1);
 	plik->odczytParametrow_Plik(*arx, nazwaARX);
 
 
-	/**
-	 * @brief Stworzenie instancji odpowiedniego regulatora
-	 * typ:
-	 * 1 - p
-	 * 10 - I
-	 * 100 - D
-	 * 11 - PI
-	 * 101 - PD
-	 * 111 - PID
-	*/
+	//
+	// Stworzenie instancji odpowiedniego regulatora
+	// typ:
+	// 1 - p
+	// 10 - I
+	// 100 - D
+	// 11 - PI
+	// 101 - PD
+	// 111 - PID
+	//
 	std::vector<double> parametryRegulatora = plik->odczytParametrowRegulatora(nazwaRegulatora);
-	//char typ[3];
-	//std::string typRegulatora;
+
 	int typ = 0;
 
 	if (parametryRegulatora[0] != 0)
 		typ += 1;
-	//typ[0] = 'P';
 
 	if (parametryRegulatora[1] != 0)
 		typ += 10;
-	//typ[1] = 'I';
 
 	if (parametryRegulatora[2] != 0)
 		typ += 100;
-	//typ[2] = 'D';
 
-//typRegulatora.assign(typ, typ + 3);
+
 	k = parametryRegulatora[0];
 	Ti = parametryRegulatora[1];
 	Td = parametryRegulatora[2];
@@ -90,6 +76,7 @@ void Symulacja::stworzenieObiektow()
 	parametryGeneratora.push_back(0.0);
 	parametryGeneratora.push_back(0.0);
 
+	//Stworzenie odpowiedniego typu regulatora
 	switch (typ)
 	{
 	case 1:
@@ -111,19 +98,16 @@ void Symulacja::stworzenieObiektow()
 
 Symulacja::Symulacja(std::string nazwaPliku, std::string nazwaARX, std::string nazwaRegulatora)
 {
-	/**
-	 * @brief domyslna nazwa pliku do odczytu
-	*/
+	// domyslna nazwa pliku do odczytu
+	
 	this->nazwaPliku = nazwaPliku;
 	
-	/**
-	 * @brief Domyslne nazwy obiektow wczytywanych z pliku
-	*/
+	// Domyslne nazwy obiektow wczytywanych z pliku
+	
 	this->nazwaARX = nazwaARX;
 	this->nazwaRegulatora = nazwaRegulatora;
-	/**
-	 * @brief Wywolanie metody tworzacej obiekty sumulowane
-	*/
+	// Wywolanie metody tworzacej obiekty sumulowane
+	
 	stworzenieObiektow();
 }
 
@@ -134,6 +118,7 @@ void Symulacja::petlaSymulacji(int n)
 	
 	double tempU = 0.0, tempY = 0.0;
 	std::cout << "Start symulacji: \n";
+	// Petla symulujaca dzialanie obiektow
 	for (auto i = 0; i < n; i++) {
 		tempU = wskREG->symuluj(tempY);
 		wektorU.push_back(tempU);
@@ -142,13 +127,14 @@ void Symulacja::petlaSymulacji(int n)
 		wektorY.push_back(tempY);
 		std::cout << "U = " << tempU << "\tY = " << tempY << std::endl;
 	}
-	
+	// Wywolanie metody zapisujacej symulacje do pliku
 	zapisDoPliku(wektorU, wektorY);
 
 }
 
 Symulacja::~Symulacja()
 {
+	// Usuniecie stworzonych obiektow symulacji
 	if (regulator != nullptr)
 		delete regulator;
 	if (arx != nullptr)

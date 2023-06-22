@@ -83,7 +83,6 @@ void ARX::wpiszParametry()
         if (nA > 0) {
             std::vector<double>& wielomianA = paramA;
             std::cout << "Wpisz parametry wielomianu A" << std::endl;
-            //paramA->operator[](1) = 1;
             wielomianA[0] = 1;
             std::cout << "a(0) = " << wielomianA[0] << std::endl;
             for (auto i = 1; i <= nA; i++) {

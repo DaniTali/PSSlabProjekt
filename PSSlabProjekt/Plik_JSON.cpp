@@ -2,16 +2,14 @@
 
 Plik_JSON::Plik_JSON()
 {
+	//Domyslna nazwa pliku
 	nazwaPliku = "data.json";
 
 }
 
 Plik_JSON::Plik_JSON(std::string nazwa)
 {
-	/**
-	 * @brief weryfikacja przyjetego rozszerzenia pliku
-	 * @param nazwa 
-	*/
+	//Weryfikacja przyjetego rozszerzenia pliku
 	if (nazwa.find(".json") != std::string::npos)
 		nazwaPliku = nazwa;
 	else
@@ -31,14 +29,13 @@ int Plik_JSON::odczytParametrow_Plik(ARX& obiekt, std::string nazwa)
 
 				for (const auto& wczytanyObiekt : Jplik.items()) {
 
-					//std::cout << obiekt.key()<< obiekt.value()["nazwa"] << std::endl;
-
+					//Wyszukanie odpowiedniego obiektu do odczytu
 					if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "ARX") {
 						std::vector<double> wektorA, wektorB;
 						std::vector<int> stopnie;
 						if (wczytanyObiekt.value()["parametry"] != NULL) {
 							parametryObiektu = wczytanyObiekt.value()["parametry"];
-
+							//Przepisanie struktury z pliku do wektorow
 							stopnie.push_back(parametryObiektu["nk"].get<int>());
 							stopnie.push_back(parametryObiektu["nA"].get<int>());
 							stopnie.push_back(parametryObiektu["nB"].get<int>());
@@ -50,6 +47,7 @@ int Plik_JSON::odczytParametrow_Plik(ARX& obiekt, std::string nazwa)
 							}
 
 						}
+						//Wpisanie parametrow z wektorow do obiektow
 						obiekt.ustawStopnie(stopnie[0], stopnie[1], stopnie[2]);
 						obiekt.wpiszParametry(wektorA, wektorB);
 						plik.close();
@@ -88,15 +86,15 @@ int Plik_JSON::odczytParametrow_Plik(ARX& obiekt, std::string nazwa)
 std::vector<double> Plik_JSON::odczytParametrowRegulatora(std::string nazwa)
 {
 	try {
+		//Proba otwarcia pliku
 		if (auto plik = std::ifstream(nazwaPliku)) {
 
 			json parametryObiektu, Jplik;
 
 			if (plik >> Jplik) {
-
+				//Petla przeszukujaca dane z pliku pod katem wymaganego typu obiektu i nazwy 
 				for (const auto& wczytanyObiekt : Jplik.items()) {
 
-					//std::cout << obiekt.key()<< obiekt.value()["nazwa"] << std::endl;
 
 					if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Regulator") {
 						
@@ -149,13 +147,13 @@ int Plik_JSON::zapisParametrowRegulatora(std::vector<double> parametry, std::str
 			plik.close();
 		}
 		catch (std::exception& e) {
-			//if(e==)
-			//TODO jak pusty 
+
 			std::cout << e.what() << std::endl;
 
 		}
 
 		if (auto plik = std::ofstream(nazwaPliku)) {
+			//Stworzenie struktury do zapisu w pliku
 			nowyObiekt["nazwa"] = nazwa;
 			nowyObiekt["typ"] = "Regulator";
 			nowyObiekt["P"] = parametry[0];
@@ -163,6 +161,7 @@ int Plik_JSON::zapisParametrowRegulatora(std::vector<double> parametry, std::str
 			nowyObiekt["D"] = parametry[2];
 
 			size_t index = 0;
+			//Przeszukanie zawartosci pliku pod kontem obecnosci obiektu o zalozonej nazwie i ewentualne nadpisanie go
 			for (const auto& wczytanyObiekt : zawartoscPliku.items()) {
 
 				if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Regulator") {
@@ -172,7 +171,7 @@ int Plik_JSON::zapisParametrowRegulatora(std::vector<double> parametry, std::str
 				index++;
 			}
 
-			
+			//Zapis do pliku
 			zawartoscPliku.push_back(nowyObiekt);
 			plik << zawartoscPliku.dump(4);
 
@@ -187,7 +186,6 @@ int Plik_JSON::zapisParametrowRegulatora(std::vector<double> parametry, std::str
 
 int Plik_JSON::zapisParametrow_Plik(ARX obiekt, std::string nazwa)
 {
-	//TODO jak jest juz w pliku taki obiekt to tylko go musze zmienic 
 
 
 	try {
@@ -198,7 +196,7 @@ int Plik_JSON::zapisParametrow_Plik(ARX obiekt, std::string nazwa)
 				plik >> zawartoscPliku;
 			}
 			catch (std::exception& e) {
-				//if(e==)
+
 				std::cout << e.what() << std::endl;
 			}
 
@@ -220,7 +218,7 @@ int Plik_JSON::zapisParametrow_Plik(ARX obiekt, std::string nazwa)
 
 
 			json parametryObiektu, Obiekt, Jplik;
-
+			//Stworzenie struktury obiektow do zapisu do pliku
 			parametryObiektu["nk"] = stopnie[0];
 			parametryObiektu["nA"] = stopnie[1];
 			parametryObiektu["nB"] = stopnie[2];
@@ -235,7 +233,7 @@ int Plik_JSON::zapisParametrow_Plik(ARX obiekt, std::string nazwa)
 			Jplik = zawartoscPliku;
 			Jplik.push_back(Obiekt);
 
-
+			//Wpisanie do pliku
 			plik << Jplik.dump(4);
 			plik.close();
 
@@ -269,12 +267,14 @@ int Plik_JSON::zapisSymulacji(std::string nazwa, std::vector<double> wektorU, st
 		}
 		try {
 			if (auto plik = std::ofstream(nazwaPliku)) {
+				//Stworzenie obiektow do zapisu
 				nowyObiekt["nazwa"] = nazwa;
 				nowyObiekt["typ"] = "Symulacja";
 				json arrayU = json::array({ wektorU }), arrayY = json::array({ wektorY });
 				nowyObiekt["u"] = arrayU;
 				nowyObiekt["y"] = arrayY;
 				size_t index = 0;
+				//Wyszukiwanie juz istniejacego obiektu w pliku o zadanej nazwie i usuniecie go
 				for (const auto& wczytanyObiekt : zawartoscPliku.items()) {
 					if (wczytanyObiekt.value()["nazwa"] == nazwa && wczytanyObiekt.value()["typ"] == "Symulacja") {
 						zawartoscPliku.erase(index);
@@ -282,7 +282,7 @@ int Plik_JSON::zapisSymulacji(std::string nazwa, std::vector<double> wektorU, st
 					}
 					index++;
 				}
-
+				//Wpisanie danych do pliku
 				zawartoscPliku.push_back(nowyObiekt);
 				plik << zawartoscPliku.dump(4);
 				plik.close();

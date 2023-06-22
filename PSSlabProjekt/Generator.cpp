@@ -31,7 +31,6 @@ Generator::Generator(int typ, double a, double b)
         sigma = b;
         generator = new std::default_random_engine();
         rozklad = new std::normal_distribution<double>(mi, sigma);
-        //this->rozklad = rozklad;
         break;
     }
 }
@@ -87,18 +86,15 @@ Generator::Generator(int typ, double a) : typ(2), A(a), T(0), mi(1.0), sigma(1.0
 double Generator::sinus()
 {
     int& Iter = *iteracja;
-    //std::cout << Iter;
     double wynik = A * sin(*iteracja * (2 * 3.1415 / T));
-    //*iteracja++;
     Iter++;
     return wynik;
 }
 
 double Generator::trojkat()
 {
-    int& Iter = *iteracja;
     //TODO
-    //*iteracja++;
+    int& Iter = *iteracja;
     Iter++;
     return 0.0;
 }
@@ -106,7 +102,6 @@ double Generator::trojkat()
 double Generator::skok()
 {
     int& Iter = *iteracja;
-    //*iteracja++;
     Iter++;
     return A;
 }
@@ -126,8 +121,6 @@ double Generator::impuls()
 
 double Generator::szum()
 {
-    //std::default_random_engine generator;
-    //std::normal_distribution<double> rozklad(mi, sigma);
     int& Iter = *iteracja;
     Iter++;
     std::normal_distribution<double>& roz = *rozklad;

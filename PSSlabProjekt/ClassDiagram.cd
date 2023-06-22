@@ -7,10 +7,10 @@
       <FileName>ARX.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="pamiecU" />
-      <Field Name="pamiecY" />
       <Field Name="paramA" />
       <Field Name="paramB" />
+      <Field Name="pamiecU" />
+      <Field Name="pamiecY" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Generator">
@@ -51,13 +51,6 @@
       <FileName>PID.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Plik">
-    <Position X="19.25" Y="1.5" Width="3" />
-    <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAAAAAAAAAAAAABIAACACAACAAAQAAAAAA=</HashCode>
-      <FileName>Plik.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Plik_JSON">
     <Position X="11.75" Y="15.5" Width="4.75" />
     <TypeIdentifier>
@@ -72,8 +65,8 @@
       <FileName>Regulator.h</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Field Name="generatory" />
       <Field Name="parametryGeneratora" />
+      <Field Name="generatory" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="SISO">
@@ -86,7 +79,7 @@
   <Class Name="Symulacja">
     <Position X="0.5" Y="15.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAAEBAAAAAACAAgAAEogACAAAAgAAABCAAAAA=</HashCode>
+      <HashCode>AABAAAAAAEBAAAAAADAAgAAUogACAAAAgAAABCAAAAA=</HashCode>
       <FileName>Symulacja.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
