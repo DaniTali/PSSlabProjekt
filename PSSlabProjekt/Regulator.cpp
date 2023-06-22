@@ -14,10 +14,14 @@ Regulator::Regulator(std::vector<double> parametry) :SP(0.0), e(0.0), eP(0.0)
 
 Regulator::~Regulator()
 {
-	/*if (generator != nullptr) {
-		delete generator;
-		generator = nullptr;
-	}*/
+	auto n = generatory.size();
+	if (n > 0) 
+		for (auto i = n - 1; i >= 0; i--) {
+			if(generatory[i] != nullptr) {
+				delete generatory[i];
+				generatory.pop_back();
+			}
+		}
 }
 
 double Regulator::symuluj(double u)

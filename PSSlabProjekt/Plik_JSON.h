@@ -63,8 +63,13 @@ public:
 	 * @return 
 	*/
 	int zapisParametrow_Plik(ARX obiekt, std::string nazwa);
-	
-	
+	/**
+	 * @brief Metoda zapisujaca przekazane wektory do pliku
+	 * @param nazwa Nazwa serii symulacji w pole nazwa w pliku
+	 * @param wektorU Wektor sygnalu sterujacego z symulacji
+	 * @param wektorY Wektor zmiennej procesowej z symulacji
+	 * @return 
+	*/
 	int zapisSymulacji(std::string nazwa, std::vector<double> wektorU, std::vector<double> wektorY);
 	~Plik_JSON();
 

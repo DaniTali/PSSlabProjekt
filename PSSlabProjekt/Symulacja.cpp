@@ -79,13 +79,13 @@ void Symulacja::stworzenieObiektow()
 	//impuls
 	parametryGeneratora.push_back(0);
 	//skok
-	parametryGeneratora.push_back(2.0);
+	parametryGeneratora.push_back(4.0);
 	//trojkat
 	parametryGeneratora.push_back(0.0);
 	parametryGeneratora.push_back(0.0);
 	//sinus
-	parametryGeneratora.push_back(0.0);
-	parametryGeneratora.push_back(0.0);
+	parametryGeneratora.push_back(2.0);
+	parametryGeneratora.push_back(1000);
 	//szum
 	parametryGeneratora.push_back(0.0);
 	parametryGeneratora.push_back(0.0);

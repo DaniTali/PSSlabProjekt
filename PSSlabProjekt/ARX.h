@@ -46,8 +46,17 @@ public:
      * @return 
     */
     int ustawStopnie(int nk, int nA, int nB);
+    /**
+     * @brief Metoda wpisujaca stopnie wielomianow obiektu ARX
+    */
     void wypiszStopnie();
+    /**
+     * @brief Metoda wpisujaca parametry obiektu ARX
+    */
     void wpiszParametry();
+    /**
+     * @brief Metoda wpisujaca wielomiany obiektu ARX
+    */
     void wypiszWielomiany();
     ~ARX() override;
     /**
@@ -79,8 +88,17 @@ public:
     std::vector<int> zwrocStopnie();
 
 private:
+    /**
+     * @brief Stopnie wielomianow obiektu ARX
+    */
     int nk, nA, nB;
+    /**
+     * @brief Wektory parametrow obiektu
+    */
     std::vector<double> paramA,  paramB;
+    /**
+     * @brief Wektory dla zapamietania wyjsc i wejsc z wczesniejszych probek czasu
+    */
     std::vector<double> pamiecU,  pamiecY;
 
 

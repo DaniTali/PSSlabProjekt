@@ -21,9 +21,6 @@
     <ClInclude Include="Generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plik.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Plik_JSON.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,9 +51,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Generator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plik.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Plik_JSON.cpp">

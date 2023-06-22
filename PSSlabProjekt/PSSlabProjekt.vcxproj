@@ -145,7 +145,6 @@
     <ClInclude Include="PD.h" />
     <ClInclude Include="PI.h" />
     <ClInclude Include="PID.h" />
-    <ClInclude Include="Plik.h" />
     <ClInclude Include="Plik_JSON.h" />
     <ClInclude Include="Regulator.h" />
     <ClInclude Include="SISO.h" />
@@ -158,7 +157,6 @@
     <ClCompile Include="PD.cpp" />
     <ClCompile Include="PI.cpp" />
     <ClCompile Include="PID.cpp" />
-    <ClCompile Include="Plik.cpp" />
     <ClCompile Include="Plik_JSON.cpp" />
     <ClCompile Include="Regulator.cpp" />
     <ClCompile Include="SISO.cpp" />

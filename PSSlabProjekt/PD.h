@@ -13,6 +13,7 @@ public:
      * @brief Kontruktor przyjmujacy parametry generatora wartoci zadanej oraz wartoc wzmocnienia regulatora
      * @param parametryGeneratora Wektor parametrow dla generatora
      * @param k Wzmocnienie regulatora
+     * @param Td Czas rozniczkowania
     */
     PD(std::vector<double> parametryGeneratora, double k, double Td);
     ~PD();

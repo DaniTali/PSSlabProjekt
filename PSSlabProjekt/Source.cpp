@@ -1,5 +1,4 @@
 #include "ARX.h"
-#include "Plik.h"
 #include "Plik_JSON.h"
 #include "Regulator.h"
 #include "Symulacja.h"
@@ -76,7 +75,7 @@ int main() {
 		std::cout << "\n\n" << "Test symulacji:\n";
 		Symulacja symulacja;
 		int n = 20;
-		symulacja.petlaSymulacji(200);
+		symulacja.petlaSymulacji(20);
 
 	}
 	
